@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% load static%}
+
+{% block content %}
+<h1 style="text-align:center; color:#00B1D2FF; background-color:#FDDB27FF; font-weight: bold; ">JOB HUNT </h1>
+<div class="container card">
+    <h1 style="color:#FDDB27FF ; background-color:#00B1D2FF;  text-align:center">CANDIDATES APPLIED</h1>
+    <div class="card-body">
+        <style>  
+table {  
+  font-family: arial, sans-serif;  
+  border-collapse: collapse;  
+}  
+  
+td, th {  
+  border: 2px solid black;  
+  text-align: left;  
+  padding: 8px;  
+}  
+tr:nth-child(even) {  
+  background-color: white;  
+}  
+tr:nth-child(odd) {  
+  background-color: pink;  
+}  
+</style>  
+        <table class="table table-hover" >
+            <tr>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Qualification</th>
+                <th>Resume</th>
+                <th>Company</th>
+            </tr>
+            {% for i in candidates %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.dateofbirth}}</td>
+                    <td>{{i.gender}}</td>
+                    <td>{{i.contactnumber}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.qualification}}</td>
+                    {% if i.resume %}
+                    <td><a href='{{i.resume.url}}' download >{{i.resume}}</td></a></td>
+                    {% else %}
+                    <td>Not submitted</td>
+                    {% endif %}
+                    <td>{{i.company}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

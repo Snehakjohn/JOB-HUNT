@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% load static%}
+
+{% block content %}
+<h1 style="text-align:center; color:#00B1D2FF; background-color:#FDDB27FF; font-weight: bold; ">JOB HUNT </h1>
+<div class="container card">
+    <h1 style="color:#FDDB27FF; text-align:center; background:#00B1D2FF;">CURRENT VACANCIES</h1>
+    <div class="card-body">
+        <style>  
+table {  
+  font-family: arial, sans-serif;  
+  border-collapse: collapse;  
+}  
+  
+td, th {  
+  border: 2px solid black;  
+  text-align: left;  
+  padding: 8px;  
+}  
+tr:nth-child(even) {  
+  background-color:white;  
+}  
+tr:nth-child(odd) {  
+  background-color: pink;  
+}  
+</style>  
+        <table class="table table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Job Title</th>
+                <th>Job Description</th>
+                <th>Salary</th>
+                <th>Experience</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Join</th>
+            </tr>
+            {% for i in companies %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.jobtitle}}</td>
+                    <td>{{i.jobdescription}}</td>
+                    <td>{{i.salary}}</td>
+                    <td>{{i.experience}}</td>
+                    <td>{{i.location}}</td>
+                    <td>{{i.startdate}}</td>
+                    <td>{{i.enddate}}</td>
+                    <td><a href="{% url 'apply' %}" class="btn btn-info btn-sm" type="submit">Apply</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+        
+{% endblock %}
